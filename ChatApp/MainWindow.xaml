@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatApp"
         mc:Ignorable="d"
+        MinHeight="{Binding WindowMinimumHeight}"
+        MinWidth="{Binding WindowMinimumWidth}"
         WindowStyle="None"
         AllowsTransparency="True"
         x:Name="AppWindow"
@@ -21,6 +23,10 @@
                         <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
                             <!-- Main window -->
                             <Grid>
+                                
+                                <!-- Setting opacity for the buttons inorder for espescally the close button-->
+                                <Border x:Name="Container" Background="{StaticResource BackgroundLightBrush}" CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" />
+
 
                                 <!-- The border of the main window -->
                                 <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" Background="{Binding ForegroundLightBrush, FallbackValue=White}">
@@ -31,6 +37,12 @@
                                 
                                 <!-- The main window's content -->
                                 <Grid>
+                                    
+                                    <!-- Clip the corner -->
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Container}" />
+                                    </Grid.OpacityMask>
+                                    
                                     <Grid.RowDefinitions>
                                         <!--Titile bar row-->
                                         <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=42}" />
@@ -60,7 +72,46 @@
                                             <Image Source="/Images/Logo/logo.png" />
                                         </Button>
                                         
+                                        
+                                        <!-- Title -->
+                                        <Viewbox Grid.Column="1" Margin="0">
+                                            <TextBlock Style="{StaticResource HeaderText}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title, FallbackValue='Welcome friend!'}" />
+                                        </Viewbox>
+                                        
+                                        <!-- the windows control buttons-->
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                            <Button Command="{Binding MinimizeCommand}" Style="{StaticResource WindowControlButton}" Content="_" />
+                                            <Button Command="{Binding MaximizeCommand}" Style="{StaticResource WindowControlButton}" Content="[]" />
+                                            <Button Command="{Binding CloseCommand}" Style="{StaticResource WindowCloseButton}" Content="X" />
+                                        </StackPanel>
+                                        
                                     </Grid>
+                                    
+                                    <!-- The seperator -->
+                                    <Border Grid.Row="1" Height="6" BorderThickness="0 0.2 0 0">
+                                        <Border.BorderBrush>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="0.0" />
+                                                <GradientStop Color="{StaticResource ForegroundMain}" Offset="0.5" />
+                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="1.0" />
+                                            </LinearGradientBrush>
+                                        </Border.BorderBrush>
+
+                                        <!-- Shadow beneath the title bar -->
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="{StaticResource BackgroundVeryLight}" Offset="0.0" />
+                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="1.0" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                    
+                                    <!-- The actual content -->
+                                    <Border Grid.Row="2" Padding="{Binding InnerContentPadding}">
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                    </Border>
+                                    
+                                    
                                 </Grid>
                             </Grid>
                         </Border>
@@ -78,7 +129,7 @@
             />
     </WindowChrome.WindowChrome>
     
-    <Grid>
+    <Grid Background="{StaticResource ForegroundLightBrush}">
         
     </Grid>
 </Window>

@@ -4,17 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace ChatApp.ViewModel
 {
     public class WindowViewModel : BaseViewModel
     {
+        #region Private properties
         private Window window;
-
+    
         private int outerMarginSize = 10;
+
         private int windowRadius = 10;
 
+        public int WindowMinimumHeight { get; set; } = 400;
 
+        public int WindowMinimumWidth { get; set; } = 400;
+
+        #endregion
+
+
+        #region Public properties
         /// <summary>
         /// Set the size of the area around the border where you can grab the border to resize it
         /// </summary>
@@ -84,6 +94,30 @@ namespace ChatApp.ViewModel
             }
         }
 
+        public Thickness InnerContentPadding
+        {
+            get
+            {
+                return new Thickness(ResizeBorder);
+            }
+        }
+
+        #endregion
+
+        #region Commands
+
+        public ICommand MaximizeCommand { get; set; }
+
+        public ICommand MinimizeCommand { get; set; }
+
+        public ICommand CloseCommand { get; set; }
+
+        public ICommand MenuCommand { get; set; }
+
+        #endregion
+
+        #region Constructors
+
         public WindowViewModel(Window window)
         {
             this.window = window;
@@ -96,6 +130,13 @@ namespace ChatApp.ViewModel
                 OnPropertyChanged(nameof(WindowRadius));
                 OnPropertyChanged(nameof(WindowCornerRadius));
             };
+
+            MinimizeCommand = new RelayCommand(() => window.WindowState = WindowState.Minimized);
+            MaximizeCommand = new RelayCommand(() => window.WindowState ^= WindowState.Maximized);
+            CloseCommand = new RelayCommand(() => window.Close());
+            MenuCommand = new RelayCommand(() => SystemCommands.ShowSystemMenu(window, window.PointToScreen(Mouse.GetPosition(window))));
         }
+
+        #endregion
     }
 }
