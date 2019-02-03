@@ -5,10 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatApp"
         mc:Ignorable="d"
-        
+        WindowStyle="None"
+        AllowsTransparency="True"
+        x:Name="AppWindow"
+        WindowStartupLocation="CenterScreen"
         Icon="Images/Logo/logo.png"
-        Title="MainWindow" Height="450" Width="800">
-    <StackPanel>
-        <TextBlock Text="{Binding Text}" />
-    </StackPanel>
+        Title="Chat app" Height="600" Width="900">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+            ResizeBorderThickness="{Binding ResizeBorderThickness}"
+            />
+    </WindowChrome.WindowChrome>
+    
+    <Grid>
+        
+    </Grid>
 </Window>
