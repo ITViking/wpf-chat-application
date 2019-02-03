@@ -22,3 +22,4 @@ C:\Users\Phil\source\repos\ChatApp\ChatApp\obj\Debug\Styles\Buttons.baml
 C:\Users\Phil\source\repos\ChatApp\ChatApp\obj\Debug\Styles\Windows.baml
 C:\Users\Phil\source\repos\ChatApp\ChatApp\obj\Debug\Styles\Fonts.baml
 C:\Users\Phil\source\repos\ChatApp\ChatApp\obj\Debug\ChatApp.csproj.CopyComplete
+C:\Users\Phil\source\repos\ChatApp\ChatApp\obj\Debug\GeneratedInternalTypeHelper.g.cs

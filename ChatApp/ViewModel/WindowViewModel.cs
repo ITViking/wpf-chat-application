@@ -74,6 +74,16 @@ namespace ChatApp.ViewModel
             }
         }
 
+        public int TitleHeight { get; set; } = 42;
+
+        public GridLength TitleHeightGridLength
+        {
+            get
+            {
+                return new GridLength(TitleHeight + ResizeBorder);
+            }
+        }
+
         public WindowViewModel(Window window)
         {
             this.window = window;
