@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 
@@ -21,6 +18,8 @@ namespace ChatApp.ViewModel
 
         public int WindowMinimumWidth { get; set; } = 400;
 
+
+
         #endregion
 
 
@@ -28,6 +27,7 @@ namespace ChatApp.ViewModel
         /// <summary>
         /// Set the size of the area around the border where you can grab the border to resize it
         /// </summary>
+        /// 
         public int ResizeBorder { get; set; } = 6;
 
         public Thickness ResizeBorderThickness
@@ -94,13 +94,9 @@ namespace ChatApp.ViewModel
             }
         }
 
-        public Thickness InnerContentPadding
-        {
-            get
-            {
-                return new Thickness(ResizeBorder);
-            }
-        }
+        public Thickness InnerContentPadding { get; set; } = new Thickness(0);
+
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
 
         #endregion
 
