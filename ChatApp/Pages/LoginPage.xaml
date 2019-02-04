@@ -36,7 +36,7 @@
                                        Margin="0 0 0 20"/>
 
                             <TextBox Tag="Email"/>
-                            <TextBox Tag="Password" Margin="0 0 0 30"/>
+                            <PasswordBox Tag="Password" Margin="0 0 0 30"/>
 
                             <Button Content="Next" HorizontalAlignment="Center" />
 

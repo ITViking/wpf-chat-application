@@ -24,3 +24,4 @@ C:\Users\Phil\source\repos\ChatApp\ChatApp\obj\Debug\ChatApp.csproj.CoreCompileI
 C:\Users\Phil\source\repos\ChatApp\ChatApp\obj\Debug\ChatApp.csproj.CopyComplete
 C:\Users\Phil\source\repos\ChatApp\ChatApp\obj\Debug\ChatApp.exe
 C:\Users\Phil\source\repos\ChatApp\ChatApp\obj\Debug\ChatApp.pdb
+C:\Users\Phil\source\repos\ChatApp\ChatApp\obj\Debug\ChatApp.csprojAssemblyReference.cache
