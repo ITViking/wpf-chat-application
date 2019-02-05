@@ -113,7 +113,7 @@
             />
     </WindowChrome.WindowChrome>
     
-    <Grid Background="{StaticResource ForegroundLightBrush}" Margin="-8,0,8,0">
+    <Grid Background="{StaticResource ForegroundLightBrush}" Margin="8,0,8,0">
         <Frame x:Name="MainFrame" Content="{Binding CurrentPage, Converter={local:ApplicationPageValueConverter}}" />
     </Grid>
 </Window>
