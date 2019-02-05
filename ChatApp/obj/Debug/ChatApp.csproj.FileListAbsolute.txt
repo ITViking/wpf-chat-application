@@ -51,3 +51,4 @@ C:\Users\Phil\source\repos\wpf-chat-application\ChatApp\obj\Debug\ChatApp.Proper
 C:\Users\Phil\source\repos\wpf-chat-application\ChatApp\obj\Debug\ChatApp.csproj.GenerateResource.cache
 C:\Users\Phil\source\repos\wpf-chat-application\ChatApp\obj\Debug\ChatApp.csproj.CoreCompileInputs.cache
 C:\Users\Phil\source\repos\wpf-chat-application\ChatApp\obj\Debug\ChatApp.csproj.CopyComplete
+C:\Users\Phil\source\repos\wpf-chat-application\ChatApp\obj\Debug\ChatApp.csprojAssemblyReference.cache
