@@ -114,6 +114,18 @@
     </WindowChrome.WindowChrome>
     
     <Grid Background="{StaticResource ForegroundLightBrush}" Margin="0,0,0,0">
-        <Frame Background="{StaticResource WordBlueBrush}" x:Name="MainFrame" Content="{Binding CurrentPage, Converter={local:ApplicationPageValueConverter}}" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+
+        <Frame Grid.Column="1" Background="{StaticResource WordBlueBrush}" x:Name="MainFrame" Content="{Binding CurrentPage, Converter={local:ApplicationPageValueConverter}}" />
+
+        <!-- Side menu control -->
+        <local:SideMenuControl>
+            
+        </local:SideMenuControl>
+        
     </Grid>
 </Window>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,14 +16,13 @@ using System.Windows.Shapes;
 namespace ChatApp
 {
     /// <summary>
-    /// Interaction logic for LoginPage.xaml
+    /// Interaction logic for SideMenuControl.xaml
     /// </summary>
-    public partial class ChatPage : BasePage<LoginViewModel>
+    public partial class SideMenuControl : UserControl
     {
-        public ChatPage()
+        public SideMenuControl()
         {
             InitializeComponent();
         }
-
     }
 }
