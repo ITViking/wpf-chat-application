@@ -6,11 +6,35 @@ using System.Windows.Media.Animation;
 
 namespace ChatApp
 {
-    public class BasePage : Page
+    public class BasePage<VM> : Page
+        where VM : BaseViewModel, new()
     {
+        private VM mViewModel;
+
         public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRigth;
         public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlideAndFadeOutToLeft;
         public float SlideSeconds { get; set; } = 0.8f;
+
+        public VM ViewModel
+        {
+            get
+            {
+                return mViewModel;
+            }
+
+            set
+            {
+                if (mViewModel == value)
+                {
+                    return;
+                }
+
+                mViewModel = value;
+
+                this.DataContext = mViewModel;
+            }
+        }
+
 
         public BasePage()
         {
@@ -21,6 +45,8 @@ namespace ChatApp
             }
 
             this.Loaded += BaseClass_Loaded;
+
+            this.ViewModel = new VM();
         }
 
         private async void BaseClass_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -39,24 +65,24 @@ namespace ChatApp
             {
                 case PageAnimation.SlideAndFadeInFromRigth:
 
-                    var sb = new Storyboard();
-                    var slideAnimation = new ThicknessAnimation
-                    {
-                        Duration = new Duration(TimeSpan.FromSeconds(this.SlideSeconds)),
-                        From = new Thickness(this.WindowWidth, 0, -this.WindowWidth, 0),
-                        To = new Thickness(0),
-                        DecelerationRatio = 0.8f
-                    };
+                    await this.SlideAndFadeInFromRight(this.SlideSeconds);
 
-                    Storyboard.SetTargetProperty(slideAnimation, new PropertyPath("Margin"));
+                    break;
+            }
+        }
 
-                    sb.Children.Add(slideAnimation);
+        public async Task AnimateOut()
+        {
+            if (this.PageUnloadAnimation == PageAnimation.None)
+            {
+                return;
+            }
 
-                    sb.Begin(this);
+            switch (this.PageUnloadAnimation)
+            {
+                case PageAnimation.SlideAndFadeOutToLeft:
 
-                    this.Visibility = Visibility.Visible;
-
-                    await Task.Delay((int)(this.SlideSeconds * 1000));
+                    await this.SlideAndFadeOutToLeft(this.SlideSeconds);
 
                     break;
             }

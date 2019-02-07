@@ -4,8 +4,9 @@
 
     <ResourceDictionary.MergedDictionaries>
         <!-- The order is important since this defines in which order they are loaded -->
+        <ResourceDictionary Source="Images.xaml" />
         <ResourceDictionary Source="Colors.xaml" />
-        <ResourceDictionary Source="Fonts.xaml" />
+        <ResourceDictionary Source="Fonts.xaml" />        
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type Button}" x:Key="HoverLess">
@@ -80,6 +81,8 @@
         <Setter Property="Padding" Value="50 10" />
         <Setter Property="Margin" Value="0 10" />
 
+        <Setter Property="local:IsBusyProperty.Value" Value="False" />
+
 
         <Setter Property="Template">
             <Setter.Value>
@@ -90,13 +93,24 @@
                             BorderThickness="{TemplateBinding BorderThickness}" 
                             Background="{TemplateBinding Background}" 
                             SnapsToDevicePixels="True">
-                        <TextBlock Text="{TemplateBinding Content}" 
-                                   Focusable="False" 
-                                   FontFamily="{TemplateBinding FontFamily}"
+                        <Grid>
+                            <TextBlock Text="{TemplateBinding Content}" 
+                                    Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisibilityConverter}}"
+                                    Focusable="False" 
+                                    FontFamily="{TemplateBinding FontFamily}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    Margin="{TemplateBinding Padding}" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+
+                            <Image Style="{StaticResource SpinningImage}"
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                   Margin="{TemplateBinding Padding}" 
-                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisibilityConverter},ConverterParameter=true}" />
+
+
+                        </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">

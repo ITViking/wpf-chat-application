@@ -1,60 +1,55 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ChatApp
 {
-    public class PasswordBoxProperties
-    {
-        public static readonly DependencyProperty MonitorPasswordProperty =
-            DependencyProperty.RegisterAttached("MonitorPassword", typeof(bool), typeof(PasswordBoxProperties), new PropertyMetadata(false, OnMonitorPasswordChanged));
 
-        private static void OnMonitorPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    public class MonitorPasswordProperty :BaseAttachedPropterty<MonitorPasswordProperty, bool>
+    {
+        public override void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var passwordBox = (d as PasswordBox);
+            //Get the caller
+            var passwordBox = sender as PasswordBox;
 
             if (passwordBox == null)
             {
                 return;
             }
 
+            //Remove previos events
             passwordBox.PasswordChanged -= PasswordBox_PasswordChanged;
 
+            //If the caller set MonitorPassword to true...
             if ((bool)e.NewValue)
             {
-                SetHasText(passwordBox); 
+                //Set the default value 
+                HasTextProperty.SetValue(passwordBox);
+                //start listening for password changes 
                 passwordBox.PasswordChanged += PasswordBox_PasswordChanged;
             }
         }
 
-        private static void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        //fires when the password box value changes
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            SetHasText((PasswordBox)sender);
+            HasTextProperty.SetValue((PasswordBox)sender);
         }
+    }
 
-        public static void SetMonitorPassword(PasswordBox element, bool value)
+
+    /// <summary>
+    /// Attached property for a passwordBox
+    /// </summary>
+    public class HasTextProperty : BaseAttachedPropterty<HasTextProperty, bool>
+    {
+
+        /// <summary>
+        /// Sets the HasText property based on if the password caller has any text
+        /// </summary>
+        /// <param name="sender"></param>
+       public static void SetValue(DependencyObject sender)
         {
-            element.SetValue(MonitorPasswordProperty, value);
-        }
-
-        public static bool GetMonitorPassword(PasswordBox element)
-        {
-            return (bool)element.GetValue(MonitorPasswordProperty);
-        }
-
-
-
-        public static readonly DependencyProperty HasTextProperty = 
-            DependencyProperty.RegisterAttached("HasText", typeof(bool), typeof(PasswordBoxProperties), new PropertyMetadata(false));
-
-        private static void SetHasText(PasswordBox element)
-        {
-            element.SetValue(HasTextProperty, element.SecurePassword.Length > 0);
-        }
-
-        public static bool GetHasText(PasswordBox element)
-        {
-            return (bool)element.GetValue(HasTextProperty);
+            SetValue(sender, ((PasswordBox)sender).SecurePassword.Length > 0);
         }
     }
 }
