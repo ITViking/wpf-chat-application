@@ -1,5 +1,5 @@
 ﻿
-namespace ChatApp
+namespace ChatApp.Core
 {
 
     /// <summary>

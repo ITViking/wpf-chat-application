@@ -1,7 +1,6 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace ChatApp
+namespace ChatApp.Core
 {
     /// <summary>
     /// A view model for each chat list item in the overview chat list 

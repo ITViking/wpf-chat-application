@@ -1,4 +1,4 @@
-﻿namespace ChatApp
+﻿namespace ChatApp.Core
 {
     public enum ApplicationPage
     {

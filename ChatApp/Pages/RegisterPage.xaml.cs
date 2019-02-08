@@ -1,4 +1,5 @@
-﻿
+﻿using ChatApp.Core;
+
 namespace ChatApp
 {
     /// <summary>

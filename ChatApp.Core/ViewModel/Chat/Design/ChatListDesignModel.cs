@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace ChatApp
+namespace ChatApp.Core
 {
 
     /// <summary>

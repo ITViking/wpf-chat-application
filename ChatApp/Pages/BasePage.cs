@@ -3,6 +3,7 @@ using System.Windows;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
+using ChatApp.Core;
 
 namespace ChatApp
 {

@@ -1,12 +1,11 @@
-﻿using ChatApp.ViewModel;
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace ChatApp
+namespace ChatApp.Core
 {
     public class LoginViewModel : BaseViewModel
     {
@@ -55,7 +54,7 @@ namespace ChatApp
         public async Task Register()
         {
             //Go to register page
-            ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = ApplicationPage.Register;
+            //((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = ApplicationPage.Register;
 
             await Task.Delay(1);
         }
