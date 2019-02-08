@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatApp.ViewModel;
+using System;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace ChatApp
 
         public ICommand LoginCommand { get; set; }
 
+        public ICommand RegisterCommand { get; set; }
+
         #endregion
 
         #region Constructors
@@ -31,6 +34,7 @@ namespace ChatApp
         public LoginViewModel()
         {
             LoginCommand = new RelayParameterizedCommand(async (parameter) => await Login(parameter));
+            RegisterCommand = new RelayCommand(async () => await Register());
         }
 
         #endregion
@@ -46,6 +50,14 @@ namespace ChatApp
             });
 
             
+        }
+
+        public async Task Register()
+        {
+            //Go to register page
+            ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = ApplicationPage.Register;
+
+            await Task.Delay(1);
         }
 
     }

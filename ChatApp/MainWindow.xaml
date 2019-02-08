@@ -12,7 +12,7 @@
         x:Name="AppWindow"
         WindowStartupLocation="CenterScreen"
         Icon="Images/Logo/logo.png"
-        Title="Chat app" Height="600" Width="900">
+        Title="Chat app" Height="500" Width="900">
 
     <Window.Resources>
         <Style TargetType="{x:Type local:MainWindow}">
@@ -124,7 +124,9 @@
 
         <!-- Side menu control -->
         <local:SideMenuControl>
-            
+
+            <local:ChatListControl />
+
         </local:SideMenuControl>
         
     </Grid>

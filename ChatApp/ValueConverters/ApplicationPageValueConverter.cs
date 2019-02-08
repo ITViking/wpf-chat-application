@@ -16,6 +16,9 @@ namespace ChatApp
                 case ApplicationPage.Chat:
                     return new ChatPage();
 
+                case ApplicationPage.Register:
+                    return new RegisterPage();
+
                 default:
                     Debugger.Break();
                     return null;

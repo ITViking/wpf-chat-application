@@ -14,9 +14,9 @@ namespace ChatApp.ViewModel
 
         private int windowRadius = 10;
 
-        public int WindowMinimumHeight { get; set; } = 800;
+        public int WindowMinimumHeight { get; set; } = 500;
 
-        public int WindowMinimumWidth { get; set; } = 500;
+        public int WindowMinimumWidth { get; set; } = 600;
 
 
 
@@ -96,7 +96,7 @@ namespace ChatApp.ViewModel
 
         public Thickness InnerContentPadding { get; set; } = new Thickness(0);
 
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Chat;
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
 
         #endregion
 
