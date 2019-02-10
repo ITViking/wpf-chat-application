@@ -1,4 +1,5 @@
-﻿using ChatApp.ViewModel;
+﻿using ChatApp.Core;
+using ChatApp.ViewModel;
 using System.Windows;
 
 
@@ -9,6 +10,8 @@ namespace ChatApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ApplicationViewModel ApplicationViewModel => new ApplicationViewModel();
+ 
         public MainWindow()
         {
             InitializeComponent();

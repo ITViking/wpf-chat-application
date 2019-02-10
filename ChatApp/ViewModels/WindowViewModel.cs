@@ -97,7 +97,7 @@ namespace ChatApp.ViewModel
 
         public Thickness InnerContentPadding { get; set; } = new Thickness(0);
 
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
+        
 
         #endregion
 

@@ -26,13 +26,17 @@
                             <Grid>
                                 
                                 <!-- Setting opacity for the buttons inorder for espescally the close button-->
-                                <Border x:Name="Container" Background="{StaticResource BackgroundLightBrush}" CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" />
+                                <Border x:Name="Container" 
+                                        Background="{StaticResource BackgroundLightBrush}" 
+                                        CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" />
 
 
                                 <!-- The border of the main window -->
-                                <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" Background="{Binding ForegroundLightBrush, FallbackValue=White}">
+                                <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" 
+                                        Background="{Binding ForegroundLightBrush, FallbackValue=White}">
                                     <Border.Effect>
-                                        <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
+                                        <DropShadowEffect ShadowDepth="0" 
+                                                          Opacity="0.2" />
                                     </Border.Effect>
                                 </Border>
                                 
@@ -74,19 +78,29 @@
                                         <!-- Title -->
                                         <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="0">
                                             <StackPanel>
-                                                <TextBlock FontFamily="{StaticResource LatoBold}" FontSize="{StaticResource FontSizeRegular}" Margin="0 0 0 -5">
-                                                    <Run Text="C" Foreground="{StaticResource WordOrangeBrush}"/><Run Text="H" Foreground="{StaticResource WordBlueBrush}"/><Run Text="A" Foreground="{StaticResource WordGreenBrush}"/><Run Text="T" Foreground="{StaticResource WordRedBrush}"/>
+                                                <TextBlock FontFamily="{StaticResource LatoBold}" 
+                                                           FontSize="{StaticResource FontSizeRegular}" 
+                                                           Margin="0 0 0 -5">
+                                                    <Run Text="C" 
+                                                         Foreground="{StaticResource WordOrangeBrush}"/><Run Text="H" Foreground="{StaticResource WordBlueBrush}"/><Run Text="A" Foreground="{StaticResource WordGreenBrush}"/><Run Text="T" Foreground="{StaticResource WordRedBrush}"/>
                                                     <Run Text="R" Foreground="{StaticResource WordOrangeBrush}"/>
                                                 </TextBlock>
-                                                <TextBlock Text="by ITViking" Foreground="{StaticResource ForegroundDarkBrush}" TextAlignment="Center"/>
+                                                <TextBlock Text="by ITViking" 
+                                                           Foreground="{StaticResource ForegroundDarkBrush}" 
+                                                           TextAlignment="Center"/>
                                             </StackPanel>
                                         </Viewbox>
                                         
                                         <!-- the windows control buttons-->
                                         <StackPanel Grid.Column="2" Orientation="Horizontal">
-                                            <Button Command="{Binding MinimizeCommand}" Style="{StaticResource WindowControlButton}" Content="_" />
-                                            <Button Command="{Binding MaximizeCommand}" Style="{StaticResource WindowControlButton}" Content="[]" />
-                                            <Button Command="{Binding CloseCommand}" Style="{StaticResource WindowCloseButton}" Content="X" />
+                                            <Button Command="{Binding MinimizeCommand}" 
+                                                    Style="{StaticResource WindowControlButton}" 
+                                                    Content="_" />
+                                            <Button Command="{Binding MaximizeCommand}" 
+                                                    Style="{StaticResource WindowControlButton}" 
+                                                    Content="[]" />
+                                            <Button Command="{Binding CloseCommand}" 
+                                                    Style="{StaticResource WindowCloseButton}" Content="X" />
                                         </StackPanel>
                                         
                                     </Grid>
@@ -121,7 +135,10 @@
 
         </Grid.ColumnDefinitions>
 
-        <Frame Grid.Column="1" Background="{StaticResource WordBlueBrush}" x:Name="MainFrame" Content="{Binding CurrentPage, Converter={local:ApplicationPageValueConverter}}" />
+        <Frame Grid.Column="1" 
+               Background="{StaticResource WordBlueBrush}" 
+               x:Name="MainFrame" 
+               Content="{Binding ApplicationViewModel.CurrentPage, ElementName=AppWindow, Converter={local:ApplicationPageValueConverter}}" />
 
         <!-- Side menu control -->
         <local:SideMenuControl>
