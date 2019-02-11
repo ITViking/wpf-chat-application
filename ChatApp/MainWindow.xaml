@@ -138,7 +138,7 @@
         <Frame Grid.Column="1" 
                Background="{StaticResource WordBlueBrush}" 
                x:Name="MainFrame" 
-               Content="{Binding ApplicationViewModel.CurrentPage, ElementName=AppWindow, Converter={local:ApplicationPageValueConverter}}" />
+               Content="{Binding ApplicationViewModel.CurrentPage, Source={x:Static local:ViewModelLocator.Instance}, Converter={local:ApplicationPageValueConverter}}" />
 
         <!-- Side menu control -->
         <local:SideMenuControl>
