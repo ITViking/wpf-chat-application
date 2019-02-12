@@ -20,7 +20,15 @@ namespace ChatApp
         /// <summary>
         /// The attached property of this class
         /// </summary>
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.RegisterAttached("Value", typeof(Property), typeof(BaseAttachedPropterty<Parent, Property>), new PropertyMetadata(new PropertyChangedCallback(OnValuePropertyChanged)));
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.RegisterAttached(
+            "Value", 
+            typeof(Property), 
+            typeof(BaseAttachedPropterty<Parent, Property>), 
+            new PropertyMetadata(
+                default(Property), 
+                new PropertyChangedCallback(OnValuePropertyChanged), 
+                new CoerceValueCallback(OnValuePropertyUpdated)
+            ));
         
 
         /// <summary>
@@ -35,6 +43,22 @@ namespace ChatApp
 
             //Call event listernes
             Instance.ValueChanged(d, e);
+        }
+
+        /// <summary>
+        /// the callback event when the valueProperty is changed even if it is the same value
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="e"></param>
+        private static object OnValuePropertyUpdated(DependencyObject d, object value)
+        {
+            // Call the parent function
+            Instance.OnValueUpdated(d, value);
+
+            //Call event listernes
+            Instance.ValueUpdated(d, value);
+
+            return value;
         }
 
         /// <summary>
@@ -55,7 +79,11 @@ namespace ChatApp
 
         #region Public events
 
+        //Fired when the value changes
         public event Action<DependencyObject, DependencyPropertyChangedEventArgs> ValueChanged = (sender, e) => { };
+
+        // Fired when the value changes even if the value is the same 
+        public event Action<DependencyObject, object> ValueUpdated = (sender, value) => { };
 
         #endregion
 
@@ -67,6 +95,14 @@ namespace ChatApp
         /// <param name="sender">The element that this property was changed for</param>
         /// <param name="e">the arguments for the event </param>
         public virtual void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e) { }
+
+
+        /// <summary>
+        /// The method that is called when any attached property of this type is changed even if the value is the same
+        /// </summary>
+        /// <param name="sender">The element that this property was changed for</param>
+        /// <param name="e">the arguments for the event </param>
+        public virtual void OnValueUpdated(DependencyObject sender, object value) { }
 
         #endregion
     }

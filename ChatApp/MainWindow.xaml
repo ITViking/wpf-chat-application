@@ -13,7 +13,7 @@
         x:Name="AppWindow"
         WindowStartupLocation="CenterScreen"
         Icon="Images/Logo/logo.png"
-        Title="Chat app" Height="500" Width="900">
+        Title="Chat app" Height="600" Width="900">
 
     <Window.Resources>
         <Style TargetType="{x:Type local:MainWindow}">
@@ -21,7 +21,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
                         <!-- Out border -->
-                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+                        <Border Margin="{Binding OuterMarginSizeThickness, FallbackValue=10}">
                             <!-- Main window -->
                             <Grid>
                                 
@@ -106,7 +106,7 @@
                                     </Grid>
 
                                     <!-- The actual content -->
-                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}" ClipToBounds="False">
                                         <ContentPresenter Content="{TemplateBinding Content}" />
                                     </Border>
                                     
@@ -127,21 +127,18 @@
             GlassFrameThickness="0"
             />
     </WindowChrome.WindowChrome>
-    
-    <Grid Background="{StaticResource ForegroundLightBrush}" Margin="0,0,0,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300" />
-            <ColumnDefinition Width="*" />
 
-        </Grid.ColumnDefinitions>
+    <Grid Background="{StaticResource WordBlueBrush}" Margin="0,0,0,0">
 
-        <Frame Grid.Column="1" 
-               Background="{StaticResource WordBlueBrush}" 
+        <Frame Background="{StaticResource WordBlueBrush}" 
                x:Name="MainFrame" 
-               Content="{Binding ApplicationViewModel.CurrentPage, Source={x:Static local:ViewModelLocator.Instance}, Converter={local:ApplicationPageValueConverter}}" />
+               Content="{
+                    Binding ApplicationViewModel.CurrentPage, 
+                    Source={x:Static local:ViewModelLocator.Instance}, 
+                    Converter={local:ApplicationPageValueConverter}}" />
 
         <!-- Side menu control -->
-        <local:SideMenuControl>
+        <local:SideMenuControl Width="300" local:AnimateSlideInFromLeftProperty.Value="False">
 
             <local:ChatListControl />
 
