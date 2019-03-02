@@ -1,7 +1,4 @@
-﻿using ChatApp.Core;
-using ChatApp.ViewModel;
-using System.Windows;
-
+﻿using System.Windows;
 
 namespace ChatApp
 {

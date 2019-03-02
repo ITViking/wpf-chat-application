@@ -128,21 +128,23 @@
             />
     </WindowChrome.WindowChrome>
 
-    <Grid Background="{StaticResource WordBlueBrush}" Margin="0,0,0,0">
+    <Border>
+        <Grid Background="{StaticResource WordBlueBrush}" Margin="0,0,0,0">
 
-        <Frame Background="{StaticResource WordBlueBrush}" 
-               x:Name="MainFrame" 
-               Content="{
-                    Binding ApplicationViewModel.CurrentPage, 
-                    Source={x:Static local:ViewModelLocator.Instance}, 
-                    Converter={local:ApplicationPageValueConverter}}" />
+            <local:PageHost Background="{StaticResource WordBlueBrush}"
+                   d:DataContext=""
+                   DataContext="{Binding ApplicationViewModel.CurrentPage, 
+                        Source={x:Static local:ViewModelLocator.Instance}, 
+                        Converter={local:ApplicationPageValueConverter}}"
+                   Content="{Binding}" />
 
-        <!-- Side menu control -->
-        <local:SideMenuControl Width="300" local:AnimateSlideInFromLeftProperty.Value="False">
+            <!-- Side menu control -->
+            <local:SideMenuControl Width="300" local:AnimateSlideInFromLeftProperty.Value="False">
 
-            <local:ChatListControl />
+                <local:ChatListControl />
 
-        </local:SideMenuControl>
-        
-    </Grid>
+            </local:SideMenuControl>
+
+        </Grid>
+    </Border>
 </Window>

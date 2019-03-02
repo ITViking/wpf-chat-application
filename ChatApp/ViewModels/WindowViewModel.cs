@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 
-namespace ChatApp.ViewModel
+namespace ChatApp
 {
     public class WindowViewModel : BaseViewModel
     {

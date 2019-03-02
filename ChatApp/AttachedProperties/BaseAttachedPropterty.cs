@@ -4,7 +4,7 @@ using System.Windows;
 namespace ChatApp
 {
     public abstract class BaseAttachedPropterty<Parent, Property>
-        where Parent: BaseAttachedPropterty<Parent, Property>, new()
+        where Parent : new()
     {
         #region Public properties
 
@@ -39,10 +39,10 @@ namespace ChatApp
         private static void OnValuePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             // Call the parent function
-            Instance.OnValueChanged(d, e);
+            (Instance as BaseAttachedPropterty<Parent, Property>)?.OnValueChanged(d, e);
 
             //Call event listernes
-            Instance.ValueChanged(d, e);
+            (Instance as BaseAttachedPropterty<Parent, Property>)?.ValueChanged(d, e);
         }
 
         /// <summary>
@@ -53,10 +53,10 @@ namespace ChatApp
         private static object OnValuePropertyUpdated(DependencyObject d, object value)
         {
             // Call the parent function
-            Instance.OnValueUpdated(d, value);
+            (Instance as BaseAttachedPropterty<Parent, Property>)?.OnValueUpdated(d, value);
 
             //Call event listernes
-            Instance.ValueUpdated(d, value);
+            (Instance as BaseAttachedPropterty<Parent, Property>)?.ValueUpdated(d, value);
 
             return value;
         }
